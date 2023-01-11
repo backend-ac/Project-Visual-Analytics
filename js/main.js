@@ -13,6 +13,7 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
   const height = 500;
   const radius = Math.min(width, height) / 2;
 
+  console.log(rawData);
   console.log(groupData); // Log the groupData to the console to check if it is correctly calculated
           
 
