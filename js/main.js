@@ -43,7 +43,7 @@ var outerArc = d3.arc()
       .range(['#F1892D', '#0EAC51', '#0077C0', '#7E349D', '#DA3C78', '#E74C3C'])
 
   // Append the SVG element
-  const svg = d3.select('body')
+  const svg = d3.select('#pie')
     .append('svg')
     .attr('width', width)
     .attr('height', height)
