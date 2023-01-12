@@ -1,4 +1,6 @@
 d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
+  console.log(d);
+  
   return {
     category: d.region,
     value: +d.allpreg_abortion
