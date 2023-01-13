@@ -67,8 +67,8 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		for( item in barData ){
 			total_value += barData[item][w_cols[key]];
 		}
-		worldData[item] = {
-			label: w_cols_labels[item],
+		worldData[key] = {
+			label: w_cols_labels[key],
 			value: total_value
 		}
 	}
