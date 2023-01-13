@@ -182,8 +182,8 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 
     	const t = d3.transition().duration(1000);
 
-    	bar = barChart
-	    	.data(worldData, d => d.label)
+    	bar = bar
+	    	.data(worldData, d => d.geo)
 	    	.join(
 	    		enter => enter.append('rect')
 	    		.attr("class", 'bar_item')
