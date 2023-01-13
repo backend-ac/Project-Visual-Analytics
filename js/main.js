@@ -24,25 +24,27 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 
 	var barData = {};
 	for( item in rawData ){
-		let key = rawData[item].geo;
-		if( barData.hasOwnProperty(key) ){
-			barData[key] = {
-				geo: key,
-				country: rawData[item].category,
-				leastsafe_abortions: barData[key].leastsafe_abortions += rawData[item].leastsafe_abortions,
-				lesssafe_abortions: barData[key].lesssafe_abortions += rawData[item].lesssafe_abortions,
-				safe_abortions: barData[key].safe_abortions += rawData[item].safe_abortions,
-				value: barData[key].value += rawData[item].value,
-			};
-		} else{
-			barData[key] = {
-				geo: key,
-				country: rawData[item].category,
-				leastsafe_abortions: rawData[item].leastsafe_abortions,
-				lesssafe_abortions: rawData[item].lesssafe_abortions,
-				safe_abortions: rawData[item].safe_abortions,
-				value: rawData[item].value,
-			};
+		if( item != 'columns' ){
+			let key = rawData[item].geo;
+			if( barData.hasOwnProperty(key) ){
+				barData[key] = {
+					geo: key,
+					country: rawData[item].category,
+					leastsafe_abortions: barData[key].leastsafe_abortions += rawData[item].leastsafe_abortions,
+					lesssafe_abortions: barData[key].lesssafe_abortions += rawData[item].lesssafe_abortions,
+					safe_abortions: barData[key].safe_abortions += rawData[item].safe_abortions,
+					value: barData[key].value += rawData[item].value,
+				};
+			} else{
+				barData[key] = {
+					geo: key,
+					country: rawData[item].category,
+					leastsafe_abortions: rawData[item].leastsafe_abortions,
+					lesssafe_abortions: rawData[item].lesssafe_abortions,
+					safe_abortions: rawData[item].safe_abortions,
+					value: rawData[item].value,
+				};
+			}
 		}
 	}
 
@@ -123,7 +125,7 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
     	.attr("viewBox", [0, 0, width, height]);
 
 	const xScale = d3.scaleBand()
-		.domain(barData.map(d => d.geo))
+		.domain(barData.keys())
 		.range([margins.left, width - margins.right])
 		.padding(0.2);
 
