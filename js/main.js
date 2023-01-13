@@ -23,20 +23,12 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 	console.log(groupData); // Log the groupData to the console to check if it is correctly calculated
 
 	var barData = {};
-
 	for( item in rawData ){
-		console.log('item');
-		console.log(rawData[item]);
-		console.log(rawData[item].geo);
-		// barData[rawData[item].geo].leastsafe_abortions += rawData[item].leastsafe_abortions;
-		// barData[rawData[item].geo].lesssafe_abortions += rawData[item].lesssafe_abortions;
-		// barData[rawData[item].geo].safe_abortions += rawData[item].safe_abortions;
-		// barData[rawData[item].geo].value += rawData[item].value;;
-
 		let key = rawData[item].geo;
-
 		if( barData.hasOwnProperty(key) ){
 			barData[key] = {
+				geo: key,
+				country: rawData[item].category,
 				leastsafe_abortions: barData[key].leastsafe_abortions += rawData[item].leastsafe_abortions,
 				lesssafe_abortions: barData[key].lesssafe_abortions += rawData[item].lesssafe_abortions,
 				safe_abortions: barData[key].safe_abortions += rawData[item].safe_abortions,
@@ -44,14 +36,14 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 			};
 		} else{
 			barData[key] = {
+				geo: key,
+				country: rawData[item].category,
 				leastsafe_abortions: rawData[item].leastsafe_abortions,
 				lesssafe_abortions: rawData[item].lesssafe_abortions,
 				safe_abortions: rawData[item].safe_abortions,
 				value: rawData[item].value,
 			};
 		}
-
-
 	}
 
 	console.log('barData');
@@ -123,17 +115,33 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		.style('text-anchor', 'middle')
 		.style('font-size', '14px');
 
-	// const barChart = d3.select('#bar')
-	// 	.append("svg")
- //    	.attr("viewBox", [0, 0, width, height]);
 
-	// const xScale = d3.scaleBand()
-	// 	.domain(rawData.map(d => d.region))
-	// 	.range([margins.left, width - margins.right])
-	// 	.padding(0.2);
 
-	// const yScale = d3.scaleLinear()
-	// 	.domain([0, d3.max(rawData, d => d.value)])
-	// 	.range([height - margins.bottom, margins.top]);
+
+	const barChart = d3.select('#bar')
+		.append("svg")
+    	.attr("viewBox", [0, 0, width, height]);
+
+	const xScale = d3.scaleBand()
+		.domain(barData.map(d => d.geo))
+		.range([margins.left, width - margins.right])
+		.padding(0.2);
+
+	const yScale = d3.scaleLinear()
+		.domain([0, d3.max(barData, d => d.value)])
+		.range([height - margins.bottom, margins.top]);
+
+	let bar = svg.append("g")
+		.selectAll("rect")
+		// TODO: Add geo as id to refer to the data point
+		.data(barData, d => d.geo)
+		.join("rect")
+		// TODO: Add geo as the class
+		.attr("class", d => d.geo)
+		.attr("x", d => xScale(d.country))
+		.attr("y", d => yScale(d.value))
+		.attr("height", d => yScale(0) - yScale(d.value))
+		.attr("width", xScale.bandwidth())
+		.attr("fill", d => colors(d.country));
 
 });
