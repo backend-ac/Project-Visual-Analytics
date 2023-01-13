@@ -28,10 +28,10 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		console.log('item');
 		console.log(item);
 		console.log(item.geo);
-		barData[item.geo]['leastsafe_abortions'] += item.leastsafe_abortions;
-		barData[item.geo]['lesssafe_abortions'] += item.lesssafe_abortions;
-		barData[item.geo]['safe_abortions'] += item.safe_abortions;
-		barData[item.geo]['value'] += item.value;
+		barData[rawData.item.geo]['leastsafe_abortions'] += rawData.item.leastsafe_abortions;
+		barData[rawData.item.geo]['lesssafe_abortions'] += rawData.item.lesssafe_abortions;
+		barData[rawData.item.geo]['safe_abortions'] += rawData.item.safe_abortions;
+		barData[rawData.item.geo]['value'] += rawData.item.value;
 	}
 
 	console.log('barData');
