@@ -52,6 +52,8 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 	console.log('barData keys');
 	console.log(barData);
 
+	let mainData = barData;
+
 	barData = Object.values(barData);
 
 	console.log('barData');
@@ -68,7 +70,8 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		}
 		worldData[key] = {
 			label: w_cols_labels[key],
-			value: total_value
+			value: total_value,
+			col: w_cols[key]
 		}
 	}
 
@@ -128,6 +131,17 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 	// Add the mouseout event listener
 	paths.on("mouseout", function(d) {
 		d3.select(this).style("fill", d.groupData);
+	});
+
+
+
+	paths.on("click", function(d) {
+		let cur_item = d3.select(this).attr("class");
+
+		d3.select(this).style("stroke", "#333")
+    		.style("stroke-width", 2);
+
+    	console.log(mainData);
 	});
 
 	const labels = svg.selectAll('.label')
