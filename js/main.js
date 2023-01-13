@@ -37,10 +37,10 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 
 		barData = {
 			key: {
-				leastsafe_abortions:  barData.key.leastsafe_abortions + rawData[item].leastsafe_abortions,
-				lesssafe_abortions:  barData.key.lesssafe_abortions + rawData[item].lesssafe_abortions,
-				safe_abortions:  barData.key.safe_abortions + rawData[item].safe_abortions,
-				value:  barData.key.value + rawData[item].value,
+				leastsafe_abortions: rawData[item].leastsafe_abortions,
+				lesssafe_abortions: rawData[item].lesssafe_abortions,
+				safe_abortions: rawData[item].safe_abortions,
+				value: rawData[item].value,
 			}
 		};
 
