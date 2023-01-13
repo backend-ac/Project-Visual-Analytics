@@ -33,7 +33,7 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		// barData[rawData[item].geo].safe_abortions += rawData[item].safe_abortions;
 		// barData[rawData[item].geo].value += rawData[item].value;;
 
-		let key = barData[rawData[item].geo];
+		let key = rawData[item].geo;
 
 		barData[key] = {
 			leastsafe_abortions: rawData[item].leastsafe_abortions,
