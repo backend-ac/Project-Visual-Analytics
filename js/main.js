@@ -145,7 +145,7 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 	const countries = Array.from(new Set(worldData.map(d => d.label))).sort();
 	const colors = d3.scaleOrdinal()
 		.domain(countries)
-		.range(d3.quantize(d3.interpolateRainbow, countries.length));
+		.range(d3.quantize(d3.interpolateRainbow, countries.length+1));
 
 	const barChart = d3.select('#bar')
 		.append("svg")
@@ -193,8 +193,8 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 
 	xGroup.selectAll("text")
 		.style("text-anchor", "end")
-		.attr("dx", "20")
-		.attr("dy", "20");
+		.attr("dx", "30")
+		.attr("dy", "10");
 		// .attr("transform", "rotate(-65)");
 
 });
