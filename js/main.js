@@ -141,6 +141,8 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		d3.select(this).style("stroke", "#333")
     		.style("stroke-width", 2);
 
+    	d3.select(this).attr('class', 'active');
+
     	console.log(mainData);
 	});
 
