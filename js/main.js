@@ -171,14 +171,14 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
     	console.log('worldData after')
     	console.log(worldData)
 
-    	// const xScale = d3.scaleBand()
-	    // 	.domain(newData.map(d => d.country))
-	    // 	.range([margins.left, width - margins.right])
-	    // 	.padding(0.2);
+    	const xScale = d3.scaleBand()
+	    	.domain(worldData.map(d => d.label))
+	    	.range([margins.left, width - margins.right])
+	    	.padding(0.2);
 
-    	// const yScale = d3.scaleLinear()
-	    // 	.domain([0, d3.max(newData, d => d.value)])
-	    // 	.range([height - margins.bottom, margins.top]);
+    	const yScale = d3.scaleLinear()
+	    	.domain([0, d3.max(worldData, d => d.value)])
+	    	.range([height - margins.bottom, margins.top]);
 
     	const t = d3.transition().duration(1000);
 
@@ -207,23 +207,17 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 	    		.remove()
 	    	);
 
-    	// const xAxis = d3.axisBottom(xScale)
-    	// const yAxis = d3.axisLeft(yScale)
+    	const xAxis = d3.axisBottom(xScale)
+    	const yAxis = d3.axisLeft(yScale)
 
-    	// xGroup.transition(t)
-	    // 	.call(xAxis)
-	    // 	.call(g => g.selectAll(".tick"));
+    	xGroup.transition(t)
+	    	.call(xAxis)
+	    	.call(g => g.selectAll(".tick"));
 
-    	// xGroup.selectAll("text")
-	    // 	.style("text-anchor", "end")
-	    // 	.attr("dx", "-.8em")
-	    // 	.attr("dy", ".15em")
-	    // 	.attr("transform", "rotate(-65)");
-
-    	// yGroup.transition(t)
-	    // 	.call(yAxis)
-	    // 	.selection()
-	    // 	.call(g => g.select(".domain").remove());
+    	yGroup.transition(t)
+	    	.call(yAxis)
+	    	.selection()
+	    	.call(g => g.select(".domain").remove());
 	});
 
 	const labels = svg.selectAll('.label')
