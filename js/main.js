@@ -129,7 +129,7 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
     	.attr("viewBox", [0, 0, width, height]);
 
 	const xScale = d3.scaleBand()
-		.domain(Object.values(barData))
+		.domain(Object.keys(barData))
 		.range([margins.left, width - margins.right])
 		.padding(0.2);
 
