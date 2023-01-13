@@ -24,10 +24,10 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 
 	const barData = d3.rollup(rawData,
 		v => {
-			leastsafe_abortions => d3.sum(v, d => d.leastsafe_abortions),
-			lesssafe_abortions => d3.sum(v, d => d.lesssafe_abortions),
-			safe_abortions => d3.sum(v, d => d.safe_abortions),
-			value => d3.sum(v, d => d.value),
+			leastsafe_abortions => d3.sum(v.leastsafe_abortions, d => d.leastsafe_abortions),
+			lesssafe_abortions => d3.sum(v.lesssafe_abortions, d => d.lesssafe_abortions),
+			safe_abortions => d3.sum(v.safe_abortions, d => d.safe_abortions),
+			value => d3.sum(v.value, d => d.value),
 		},
 		d => d.geo
 	);
