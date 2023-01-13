@@ -36,10 +36,10 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		let key = rawData[item].geo;
 
 		barData[key] = {
-			leastsafe_abortions: (barData[key].leastsafe_abortions ? barData[key].leastsafe_abortions : 0)  += rawData[item].leastsafe_abortions,
-			lesssafe_abortions: (barData[key].lesssafe_abortions ? barData[key].lesssafe_abortions : 0)  += rawData[item].lesssafe_abortions,
-			safe_abortions: (barData[key].safe_abortions ? barData[key].safe_abortions : 0)  += rawData[item].safe_abortions,
-			value: (barData[key].value ? barData[key].value : 0)  += rawData[item].value,
+			leastsafe_abortions: barData[key].leastsafe_abortions ? barData[key].leastsafe_abortions : 0  += rawData[item].leastsafe_abortions,
+			lesssafe_abortions: barData[key].lesssafe_abortions ? barData[key].lesssafe_abortions : 0  += rawData[item].lesssafe_abortions,
+			safe_abortions: barData[key].safe_abortions ? barData[key].safe_abortions : 0  += rawData[item].safe_abortions,
+			value: barData[key].value ? barData[key].value : 0  += rawData[item].value,
 		};
 
 	}
