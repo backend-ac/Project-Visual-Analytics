@@ -22,10 +22,17 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 	console.log(rawData);
 	console.log(groupData); // Log the groupData to the console to check if it is correctly calculated
 
-	// const barData;
+	var barData = {};
 
-	// console.log('barData');
-	// console.log(barData);
+	for( item in rawData ){
+		barData[item.geo].leastsafe_abortions += item.leastsafe_abortions;
+		barData[item.geo].lesssafe_abortions += item.lesssafe_abortions;
+		barData[item.geo].safe_abortions += item.safe_abortions;
+		barData[item.geo].value += item.value;
+	}
+
+	console.log('barData');
+	console.log(barData);
 
 
 	// Create a pie layout
