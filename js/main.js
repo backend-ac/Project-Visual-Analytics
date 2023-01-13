@@ -137,7 +137,7 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 	let bar = barChart.append("g")
 		.selectAll("rect")
 		// TODO: Add geo as id to refer to the data point
-		.data(barData, d => d.geo)
+		.data(Object.values(barData), d => d.geo)
 		.join("rect")
 		// TODO: Add geo as the class
 		.attr("class", d => d.geo)
