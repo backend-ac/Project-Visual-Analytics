@@ -139,15 +139,88 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 	paths.on("click", function(d) {
 		let cur_item = d3.select(this).attr("data-item");
 
-		d3.selectAll('#pie .active').classed('active', false);
+		d3.selectAll('#pie .active')
+			.classed('active', false)
+			.style('stroke-width', 0);
 
 		d3.select(this).style("stroke", "#333")
     		.style("stroke-width", 2);
     	d3.select(this).classed('active', true);
 
     	console.log(mainData);
+    	console.log(mainData[cur_item]);
 
-    	console.log(mainData[cur_item])
+    	console.log('worldData before')
+    	console.log(worldData)
+
+    	for( item in worldData ){
+    		if( worldData[item].col == 'leastsafe_abortions' ){
+    			worldData[item].value = mainData[cur_item].leastsafe_abortions;
+    		}
+    		if( worldData[item].col == 'lesssafe_abortions' ){
+    			worldData[item].value = mainData[cur_item].lesssafe_abortions;
+    		}
+    		if( worldData[item].col == 'safe_abortions' ){
+    			worldData[item].value = mainData[cur_item].safe_abortions;
+    		}
+    	}
+
+    	console.log('worldData after')
+    	console.log(worldData)
+
+    	// const xScale = d3.scaleBand()
+	    // 	.domain(newData.map(d => d.country))
+	    // 	.range([margins.left, width - margins.right])
+	    // 	.padding(0.2);
+
+    	// const yScale = d3.scaleLinear()
+	    // 	.domain([0, d3.max(newData, d => d.value)])
+	    // 	.range([height - margins.bottom, margins.top]);
+
+    	const t = d3.transition().duration(1000);
+
+    	bar = barChart
+	    	.data(worldData, d => d.geo)
+	    	.join(
+	    		enter => enter.append('rect')
+	    		.attr("class", 'bar_item')
+				.attr("x", d => xScale(d.label))
+				.attr("y", d => yScale(d.value))
+				.attr("height", 0)
+				.attr("width", xScale.bandwidth())
+				.attr("fill", d => colors(d.label))
+	    		// .on("mouseover", mouseover)
+	    		// .on("mouseout", mouseout)
+	    		.call(enter => enter.transition(t)
+	    		.attr("height", d => yScale(0) - yScale(d.value))),
+	    		update => update.transition(t)
+	    		.attr("x", d => xScale(d.label))
+				.attr("y", d => yScale(d.value))
+	    		.attr("height", d => yScale(0) - yScale(d.value))
+	    		.attr("width", xScale.bandwidth()),
+	    		exit => exit.transition(t)
+	    		.attr("y", yScale(0))
+	    		.attr("height", 0)
+	    		.remove()
+	    	);
+
+    	// const xAxis = d3.axisBottom(xScale)
+    	// const yAxis = d3.axisLeft(yScale)
+
+    	// xGroup.transition(t)
+	    // 	.call(xAxis)
+	    // 	.call(g => g.selectAll(".tick"));
+
+    	// xGroup.selectAll("text")
+	    // 	.style("text-anchor", "end")
+	    // 	.attr("dx", "-.8em")
+	    // 	.attr("dy", ".15em")
+	    // 	.attr("transform", "rotate(-65)");
+
+    	// yGroup.transition(t)
+	    // 	.call(yAxis)
+	    // 	.selection()
+	    // 	.call(g => g.select(".domain").remove());
 	});
 
 	const labels = svg.selectAll('.label')
