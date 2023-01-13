@@ -60,8 +60,7 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 	let w_cols = ['leastsafe_abortions', 'lesssafe_abortions', 'safe_abortions'];
 	let w_cols_labels = ['Leastsafe Abortions', 'Lesssafe Abortions', 'Safe Abortions'];
 
-	let worldData = {};
-
+	let worldData = [];
 	for( key in w_cols ){
 		let total_value = 0;
 		for( item in barData ){
@@ -143,8 +142,7 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		.style('font-size', '14px');
 
 
-	// const countries = Array.from(new Set(worldData.map(d => d.label))).sort();
-	const countries = w_cols_labels;
+	const countries = Array.from(new Set(worldData.map(d => d.label))).sort();
 	const colors = d3.scaleOrdinal()
 		.domain(countries)
 		.range(d3.quantize(d3.interpolateRainbow, countries.length));
@@ -154,7 +152,7 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
     	.attr("viewBox", [0, 0, width, height]);
 
 	const xScale = d3.scaleBand()
-		.domain(w_cols_labels)
+		.domain(worldData.map(d => d.label))
 		.range([margins.left, width - margins.right])
 		.padding(0.2);
 
