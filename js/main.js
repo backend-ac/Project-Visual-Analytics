@@ -3,7 +3,10 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
   
   return {
     category: d.region,
-    value: +d.allpreg_abortion
+    value: +d.allpreg_abortion,
+    safe_abortions: +d.safe_abortions,
+    lesssafe_abortions: +d.lesssafe_abortions,
+    leastsafe_abortions: +d.leastsafe_abortions,
   }
 }).then(rawData => { // Log the data to the console to check if it is correctly populated
   // Group the data by region and sum the values of allpreg_abortion
