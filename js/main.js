@@ -49,7 +49,13 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		}
 	}
 
-	console.log('barData');
+
+	console.log('barData 1');
+	console.log(barData);
+
+	barData = Object.values(barData);
+
+	console.log('barData 2');
 	console.log(barData);
 
 
@@ -119,7 +125,7 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		.style('font-size', '14px');
 
 
-	const countries = Array.from(new Set(Object.values(barData).map(d => d.country))).sort();
+	const countries = Array.from(new Set(barData.map(d => d.country))).sort();
 	const colors = d3.scaleOrdinal()
 		.domain(countries)
 		.range(d3.quantize(d3.interpolateRainbow, countries.length));
@@ -129,18 +135,18 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
     	.attr("viewBox", [0, 0, width, height]);
 
 	const xScale = d3.scaleBand()
-		.domain(Object.keys(barData))
+		.domain(barData.map(d => d.country))
 		.range([margins.left, width - margins.right])
 		.padding(0.2);
 
 	const yScale = d3.scaleLinear()
-		.domain([0, d3.max(Object.values(barData), d => d.value)])
+		.domain([0, d3.max(barData, d => d.value)])
 		.range([height - margins.bottom, margins.top]);
 
 	let bar = barChart.append("g")
 		.selectAll("rect")
 		// TODO: Add geo as id to refer to the data point
-		.data(Object.values(barData), d => d.geo)
+		.data(barData, d => d.geo)
 		.join("rect")
 		// TODO: Add geo as the class
 		.attr("class", d => d.geo)
