@@ -143,7 +143,7 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		.style('font-size', '14px');
 
 
-	const countries = Array.from(new Set(barData.map(d => d.country))).sort();
+	const countries = Array.from(new Set(worldData.map(d => d.label))).sort();
 	const colors = d3.scaleOrdinal()
 		.domain(countries)
 		.range(d3.quantize(d3.interpolateRainbow, countries.length));
@@ -153,29 +153,30 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
     	.attr("viewBox", [0, 0, width, height]);
 
 	const xScale = d3.scaleBand()
-		.domain(barData.map(d => d.country))
+		.domain(worldData.map(d => d.label))
 		.range([margins.left, width - margins.right])
 		.padding(0.2);
 
 	const yScale = d3.scaleLinear()
-		.domain([0, d3.max(barData, d => d.value)])
+		.domain([0, d3.max(worldData, d => d.value)])
 		.range([height - margins.bottom, margins.top]);
 
 	let bar = barChart.append("g")
 		.selectAll("rect")
 		// TODO: Add geo as id to refer to the data point
-		.data(barData, d => d.geo)
+		.data(worldData, d => d.geo)
 		.join("rect")
 		// TODO: Add geo as the class
-		.attr("class", d => d.geo)
-		.attr("x", d => xScale(d.country))
+		// .attr("class", d => d.geo)
+		.attr("class", 'bar_item')
+		.attr("x", d => xScale(d.label))
 		.attr("y", d => yScale(d.value))
 		.attr("height", d => yScale(0) - yScale(d.value))
 		.attr("width", xScale.bandwidth())
-		.attr("fill", d => colors(d.country));
+		.attr("fill", d => colors(d.label));
 
 	// Add the tooltip when hover on the bar
-	bar.append('title').text(d => d.country);
+	bar.append('title').text(d => d.label);
 
 	// Create the x and y axes and append them to the chart
 	const yAxis = d3.axisLeft(yScale);
