@@ -131,7 +131,7 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		.padding(0.2);
 
 	const yScale = d3.scaleLinear()
-		.domain([0, d3.max(barData, d => d.value)])
+		.domain([0, d3.max(Object.values(barData), d => d.value)])
 		.range([height - margins.bottom, margins.top]);
 
 	let bar = svg.append("g")
