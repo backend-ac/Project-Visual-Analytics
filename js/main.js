@@ -147,4 +147,27 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		.attr("width", xScale.bandwidth())
 		.attr("fill", d => colors(d.country));
 
+	// Add the tooltip when hover on the bar
+	bar.append('title').text(d => d.country);
+
+	// Create the x and y axes and append them to the chart
+	const yAxis = d3.axisLeft(yScale);
+
+	const yGroup = svg.append("g")
+		.attr("transform", `translate(${margins.left},0)`)
+		.call(yAxis)
+		.call(g => g.select(".domain").remove());
+
+	const xAxis = d3.axisBottom(xScale);
+
+	const xGroup = svg.append("g")
+		.attr("transform", `translate(0,${height - margins.bottom})`)
+		.call(xAxis);
+
+	xGroup.selectAll("text")
+		.style("text-anchor", "end")
+		.attr("dx", "-.8em")
+		.attr("dy", ".15em")
+		.attr("transform", "rotate(-65)");
+
 });
