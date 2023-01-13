@@ -22,10 +22,10 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 	console.log(rawData);
 	console.log(groupData); // Log the groupData to the console to check if it is correctly calculated
 
-	const barData;
+	// const barData;
 
-	console.log('barData');
-	console.log(barData);
+	// console.log('barData');
+	// console.log(barData);
 
 
 	// Create a pie layout
