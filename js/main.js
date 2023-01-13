@@ -161,7 +161,7 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 	const xAxis = d3.axisBottom(xScale);
 
 	const xGroup = barChart.append("g")
-		.attr("transform", `translate(0,${height - margins.bottom})`)
+		.attr("transform", `translate(${margins.left},${height - margins.bottom})`)
 		.call(xAxis);
 
 	xGroup.selectAll("text")
