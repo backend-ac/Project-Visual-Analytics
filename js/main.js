@@ -194,7 +194,7 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 	xGroup.selectAll("text")
 		.style("text-anchor", "end")
 		.attr("dx", "-.8em")
-		.attr("dy", ".15em")
-		.attr("transform", "rotate(-65)");
+		.attr("dy", ".15em");
+		// .attr("transform", "rotate(-65)");
 
 });
