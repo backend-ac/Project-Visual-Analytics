@@ -156,12 +156,15 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
     	for( item in worldData ){
     		if( worldData[item].col == 'leastsafe_abortions' ){
     			worldData[item].value = mainData[cur_item].leastsafe_abortions;
+    			console.log('update leastsafe_abortions')
     		}
     		if( worldData[item].col == 'lesssafe_abortions' ){
     			worldData[item].value = mainData[cur_item].lesssafe_abortions;
+    			console.log('update lesssafe_abortions')
     		}
     		if( worldData[item].col == 'safe_abortions' ){
     			worldData[item].value = mainData[cur_item].safe_abortions;
+    			console.log('update safe_abortions')
     		}
     	}
 
@@ -180,7 +183,7 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
     	const t = d3.transition().duration(1000);
 
     	bar = barChart
-	    	.data(worldData, d => d.geo)
+	    	.data(worldData, d => d.label)
 	    	.join(
 	    		enter => enter.append('rect')
 	    		.attr("class", 'bar_item')
