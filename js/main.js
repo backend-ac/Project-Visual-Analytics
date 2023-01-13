@@ -119,6 +119,7 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		.enter()
 		.append('path')
 		.attr('class', d => d.data[0].replace(/\s/g, ''))
+		.attr('data-item', d => d.data[0].replace(/\s/g, ''))
 		.attr('d', arc)
 		.attr('fill', (d, i) => color(i))
 		.style('opacity', 0.8);
@@ -136,14 +137,17 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 
 
 	paths.on("click", function(d) {
-		let cur_item = d3.select(this).attr("class");
+		let cur_item = d3.select(this).attr("data-item");
+
+		d3.selectAll('#pie .active').classed('active', false);
 
 		d3.select(this).style("stroke", "#333")
     		.style("stroke-width", 2);
-
     	d3.select(this).classed('active', true);
 
     	console.log(mainData);
+
+    	console.log(mainData[cur_item])
 	});
 
 	const labels = svg.selectAll('.label')
