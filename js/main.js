@@ -62,7 +62,7 @@ const paths = svg.selectAll('.arc')
   .data(pie(groupData))
   .enter()
   .append('path')
-  .attr('class', 'arc')
+  .attr('class', d => d[1].replace(/\s/g, ''))
   .attr('d', arc)
   .attr('fill', (d, i) => color(i))
   .style('opacity', 0.8);
