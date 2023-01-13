@@ -11,7 +11,7 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
   }
 }).then(rawData => { // Log the data to the console to check if it is correctly populated
   // Group the data by region and sum the values of allpreg_abortion
-  const groupData = d3.rollup(rawData,
+  const listData = d3.rollup(rawData,
     v => d3.sum(v, d => d.value),
     d => d.category
   );
@@ -20,19 +20,21 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
   const radius = Math.min(width, height) / 2;
 
   console.log(rawData);
-  console.log(groupData); // Log the groupData to the console to check if it is correctly calculated
+  console.log(listData); // Log the groupData to the console to check if it is correctly calculated
+
+  const groupData = rawData;
           
 
   // Create a pie layout
   const pie = d3.pie()
     .sort(null)
-    .value(d => d[1])
+    .value(d => d.value)
     .padAngle(0.03);
 
   // Set the radius scale
 const r = d3.scaleLinear()
 .range([0, radius])
-.domain([0, d3.max(groupData, d => d[1])]);
+.domain([0, d3.max(groupData, d => d.value)]);
 
 // Set the arc generator function
 const arc = d3.arc()
@@ -45,7 +47,7 @@ var outerArc = d3.arc()
 
   // Set the color scale
   const color = d3.scaleOrdinal()
-      .domain(groupData.keys())
+      .domain(groupData.map(d => d.geo))
       .range(['#F1892D', '#0EAC51', '#0077C0', '#7E349D', '#DA3C78', '#E74C3C'])
 
   // Append the SVG element
@@ -59,10 +61,10 @@ var outerArc = d3.arc()
 
 // Add the pie chart
 const paths = svg.selectAll('.arc')
-  .data(pie(groupData))
+  .data(pie(groupData, d => d.geo))
   .enter()
   .append('path')
-  .attr('class', 'arc')
+  .attr('class', d => d.geo)
   .attr('d', arc)
   .attr('fill', (d, i) => color(i))
   .style('opacity', 0.8);
