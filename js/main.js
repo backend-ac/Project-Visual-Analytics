@@ -22,15 +22,7 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 	console.log(rawData);
 	console.log(groupData); // Log the groupData to the console to check if it is correctly calculated
 
-	const barData = d3.rollup(rawData,
-		v => {
-			leastsafe_abortions => d3.sum(v.leastsafe_abortions, d => d.leastsafe_abortions),
-			lesssafe_abortions => d3.sum(v.lesssafe_abortions, d => d.lesssafe_abortions),
-			safe_abortions => d3.sum(v.safe_abortions, d => d.safe_abortions),
-			value => d3.sum(v.value, d => d.value),
-		},
-		d => d.geo
-	);
+	const barData;
 
 	console.log('barData');
 	console.log(barData);
