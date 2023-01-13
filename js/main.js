@@ -119,7 +119,7 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		.style('font-size', '14px');
 
 
-	const countries = Array.from(new Set(barData.map(d => d.country))).sort();
+	const countries = Array.from(new Set(Object.values(barData).map(d => d.country))).sort();
 	const colors = d3.scaleOrdinal()
 		.domain(countries)
 		.range(d3.quantize(d3.interpolateRainbow, countries.length));
