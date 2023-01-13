@@ -157,7 +157,7 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 	const yAxis = d3.axisLeft(yScale);
 
 	const yGroup = barChart.append("g")
-		.attr("transform", `translate(${margins.left},0)`)
+		.attr("transform", `translate(45,0)`)
 		.call(yAxis)
 		.call(g => g.select(".domain").remove());
 
