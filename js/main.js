@@ -49,14 +49,28 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		}
 	}
 
-
-	console.log('barData 1');
+	console.log('barData keys');
 	console.log(barData);
 
 	barData = Object.values(barData);
 
-	console.log('barData 2');
+	console.log('barData');
 	console.log(barData);
+
+	let w_cols = ['leastsafe_abortions', 'lesssafe_abortions', 'safe_abortions'];
+	let w_cols_labels = ['Leastsafe Abortions', 'Lesssafe Abortions', 'Safe Abortions'];
+
+	let worldData = {};
+	// for( item in barData ){
+	// 	worldData[item] = {
+	// 		colName: w_cols_labels[item]
+	// 		value: barData[item].w_cols
+	// 	}
+	// }
+
+	for( key in w_cols ){
+		console.log(key);
+	}
 
 
 	// Create a pie layout
