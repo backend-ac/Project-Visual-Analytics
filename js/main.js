@@ -134,7 +134,7 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		.domain([0, d3.max(Object.values(barData), d => d.value)])
 		.range([height - margins.bottom, margins.top]);
 
-	let bar = svg.append("g")
+	let bar = barChart.append("g")
 		.selectAll("rect")
 		// TODO: Add geo as id to refer to the data point
 		.data(barData, d => d.geo)
@@ -153,14 +153,14 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 	// Create the x and y axes and append them to the chart
 	const yAxis = d3.axisLeft(yScale);
 
-	const yGroup = svg.append("g")
+	const yGroup = barChart.append("g")
 		.attr("transform", `translate(${margins.left},0)`)
 		.call(yAxis)
 		.call(g => g.select(".domain").remove());
 
 	const xAxis = d3.axisBottom(xScale);
 
-	const xGroup = svg.append("g")
+	const xGroup = barChart.append("g")
 		.attr("transform", `translate(0,${height - margins.bottom})`)
 		.call(xAxis);
 
