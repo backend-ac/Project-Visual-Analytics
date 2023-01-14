@@ -92,26 +92,6 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 	console.log('worldData')
 	console.log(worldData)
 
-	let pct_cols = ['pct_matdeaths_abortions', 'pct_matdeaths_safeabs', 'pct_matdeaths_unsafeabs'];
-	let pctData = [];
-
-	for( item in barData ){
-		for( key in pct_cols ){
-			let pctItem = {
-				region: barData[item].geo,
-				column: pct_cols[key],
-				value: barData[item][pct_cols[key]],
-			};
-
-			pctData.push(pctItem);
-		}
-	}
-	
-	console.log('pctData')
-	console.log(pctData)
-	
-
-	
 
 
 	// Create a pie layout
@@ -267,6 +247,9 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		.style('font-size', '14px');
 
 
+
+
+
 	const countries = Array.from(new Set(worldData.map(d => d.label))).sort();
 	const colors = d3.scaleOrdinal()
 		.domain(countries)
@@ -321,5 +304,77 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		.attr("dx", "30")
 		.attr("dy", "10");
 		// .attr("transform", "rotate(-65)");
+
+
+
+	/*-------------- Group Bar Chart ---------------*/
+
+	let pct_cols = ['pct_matdeaths_abortions', 'pct_matdeaths_safeabs', 'pct_matdeaths_unsafeabs'];
+	let pctData = [];
+
+	for( item in barData ){
+		for( key in pct_cols ){
+			let pctItem = {
+				region: barData[item].geo,
+				column: pct_cols[key],
+				value: barData[item][pct_cols[key]],
+			};
+
+			pctData.push(pctItem);
+		}
+	}
+
+	console.log('pctData')
+	console.log(pctData)
+
+
+
+	const groupBarChart = d3.select('#groupBar')
+		.append("svg")
+    	.attr("viewBox", [0, 0, width, height]);
+
+	const gxScale = d3.scaleBand()
+		.domain(pctData.map(d => d.region))
+		.range([margins.left, width - margins.right])
+		.padding(0.2);
+
+	const gxzScale = d3.scaleBand()
+		.domain(pctData.map(d => d.column))
+		.range([margins.left, width - margins.right])
+		.padding(0.2);
+
+	const gyScale = d3.scaleLinear()
+		.domain([0, d3.max(pctData, d => d.value)])
+		.range([height - margins.bottom, margins.top]);
+
+	let gbar = groupBarChart.append("g")
+		.selectAll("rect")
+		.data(pctData)
+		.join("rect")
+			.attr("x", d => gxScale(d.region) + gxzScale(d.column))
+			.attr("y", d => gyScale(d.value))
+			.attr("height", d => gyScale(0) - gyScale(d.value))
+			.attr("width", gxScale.bandwidth())
+			.attr("fill", d => colors(d.label));
+
+	gbar.append('title').text(d => d.label);
+
+	const gyAxis = d3.axisLeft(gyScale);
+
+	const gyGroup = groupBarChart.append("g")
+		.attr("transform", `translate(45,0)`)
+		.call(gyAxis)
+		.call(g => g.select(".domain").remove());
+
+	const gxAxis = d3.axisBottom(gxScale);
+
+	const gxGroup = groupBarChart.append("g")
+		.attr("transform", `translate(${margins.left},${height - margins.bottom})`)
+		.call(gxAxis);
+
+	gxGroup.selectAll("text")
+		.style("text-anchor", "end")
+		.attr("dx", "30")
+		.attr("dy", "10");
 
 });
