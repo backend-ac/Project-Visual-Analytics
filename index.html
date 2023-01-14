@@ -15,9 +15,9 @@
 
 		<div>
 			<ul class="bar_info">
-				<li class="bar_info_item pct_abortions"></li>
-				<li class="bar_info_item pct_safeabs"></li>
-				<li class="bar_info_item pct_unsafeabs"></li>
+				<li class="bar_info_item pct_abortions">pct_matdeaths_abortions</li>
+				<li class="bar_info_item pct_safeabs">pct_matdeaths_safeabs</li>
+				<li class="bar_info_item pct_unsafeabs">pct_matdeaths_unsafeabs</li>
 			</ul>
 			<div id="groupBar"></div>
 		</div>
@@ -29,6 +29,11 @@
 			margin: 0 auto;
 		}
 
+		.bar_info{
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+		}
 		.bar_info_item{
 			padding: 10px 20px;
 			border-radius: 3px;
