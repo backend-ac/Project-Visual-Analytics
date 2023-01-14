@@ -351,6 +351,7 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		.selectAll("rect")
 		.data(pctData)
 		.join("rect")
+			.attr('class', d.region)
 			.attr("x", d => gxScale(d.region) + gxzScale(d.column))
 			.attr("y", d => gyScale(d.value))
 			.attr("height", d => gyScale(0) - gyScale(d.value))
