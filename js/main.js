@@ -1,5 +1,5 @@
 d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
-	// console.log(d);
+	console.log(d);
 
 	return {
 		geo: d.region.replace(/\s/g, ''),
