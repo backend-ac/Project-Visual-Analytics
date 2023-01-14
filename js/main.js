@@ -39,6 +39,10 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 					lesssafe_abortions: barData[key].lesssafe_abortions += rawData[item].lesssafe_abortions,
 					safe_abortions: barData[key].safe_abortions += rawData[item].safe_abortions,
 					value: barData[key].value += rawData[item].value,
+
+					pct_matdeaths_abortions: barData[key].pct_matdeaths_abortions += rawData[item].pct_matdeaths_abortions,
+					pct_matdeaths_safeabs: barData[key].pct_matdeaths_safeabs += rawData[item].pct_matdeaths_safeabs,
+					pct_matdeaths_unsafeabs: barData[key].pct_matdeaths_unsafeabs += rawData[item].pct_matdeaths_unsafeabs,
 				};
 			} else{
 				barData[key] = {
@@ -48,6 +52,10 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 					lesssafe_abortions: rawData[item].lesssafe_abortions,
 					safe_abortions: rawData[item].safe_abortions,
 					value: rawData[item].value,
+
+					pct_matdeaths_abortions: rawData[item].pct_matdeaths_abortions,
+					pct_matdeaths_safeabs: rawData[item].pct_matdeaths_safeabs,
+					pct_matdeaths_unsafeabs: rawData[item].pct_matdeaths_unsafeabs,
 				};
 			}
 		}
