@@ -328,6 +328,9 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 	console.log(pctData)
 
 
+	const pctColor = d3.scaleOrdinal()
+		.domain(['#F1894D', '#1EAC51', '#2077C0', '#8E349D', '#DA4C78', '#E75C3C'])
+		.range(['#F1894D', '#1EAC51', '#2077C0', '#8E349D', '#DA4C78', '#E75C3C'])
 
 	const groupBarChart = d3.select('#groupBar')
 		.append("svg")
@@ -336,7 +339,7 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 	const gxScale = d3.scaleBand()
 		.domain(pctData.map(d => d.region))
 		.range([margins.left, width - margins.right])
-		.padding(0.2);
+		.padding(0.1);
 
 	const gxzScale = d3.scaleBand()
 		.domain(pctData.map(d => d.column))
@@ -355,8 +358,9 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 			.attr("x", d => gxScale(d.region) + gxzScale(d.column))
 			.attr("y", d => gyScale(d.value))
 			.attr("height", d => gyScale(0) - gyScale(d.value))
-			.attr("width", 20)
-			.attr("fill", d => colors(d.label));
+			.attr("width", 30)
+			.attr('fill', (d, i) => pctColor(i));
+			// .attr("fill", d => colors(d.label));
 
 	gbar.append('title').text(d => d.label);
 
