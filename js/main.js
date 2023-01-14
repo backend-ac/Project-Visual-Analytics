@@ -75,6 +75,8 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 	let w_cols_labels = ['Leastsafe Abortions', 'Lesssafe Abortions', 'Safe Abortions'];
 
 	let worldData = [];
+	
+
 	for( key in w_cols ){
 		let total_value = 0;
 		for( item in barData ){
@@ -91,6 +93,25 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 	console.log(worldData)
 
 	let pct_cols = ['pct_matdeaths_abortions', 'pct_matdeaths_safeabs', 'pct_matdeaths_unsafeabs'];
+	let pctData = [];
+
+	for( item in barData ){
+		for( key in pct_cols ){
+			let pctItem = {
+				region: barData[item].geo,
+				column: pct_cols[key],
+				value: barData[item][pct_cols[key]],
+			};
+
+			pctData.push(pctItem);
+		}
+	}
+	
+	console.log('pctData')
+	console.log(pctData)
+	
+
+	
 
 
 	// Create a pie layout
