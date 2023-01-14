@@ -355,7 +355,7 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 			.attr("x", d => gxScale(d.region) + gxzScale(d.column))
 			.attr("y", d => gyScale(d.value))
 			.attr("height", d => gyScale(0) - gyScale(d.value))
-			.attr("width", gxScale.bandwidth())
+			.attr("width", 20)
 			.attr("fill", d => colors(d.label));
 
 	gbar.append('title').text(d => d.label);
