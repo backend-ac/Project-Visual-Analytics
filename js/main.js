@@ -339,11 +339,11 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 	const gxScale = d3.scaleBand()
 		.domain(pctData.map(d => d.region))
 		.range([margins.left, width - margins.right])
-		.padding(0);
+		.paddingInner(0);
 
 	const gxzScale = d3.scaleBand()
 		.domain(pctData.map(d => d.column))
-		.range([margins.left, gxScale.bandwidth()])
+		.range([0, gxScale.bandwidth()])
 		.padding(0);
 
 	const gyScale = d3.scaleLinear()
@@ -379,7 +379,7 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 
 	gxGroup.selectAll("text")
 		.style("text-anchor", "end")
-		.attr("dx", "30")
+		.attr("dx", "10")
 		.attr("dy", "10");
 
 });
