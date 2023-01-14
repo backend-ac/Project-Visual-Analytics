@@ -12,13 +12,38 @@
 	<div class="charts">
 		<div id="pie"></div>
 		<div id="bar"></div>
-		<div id="groupBar"></div>
+
+		<div>
+			<ul class="bar_info">
+				<li class="bar_info_item pct_abortions"></li>
+				<li class="bar_info_item pct_safeabs"></li>
+				<li class="bar_info_item pct_unsafeabs"></li>
+			</ul>
+			<div id="groupBar"></div>
+		</div>
 	</div>
 
 	<style type="text/css">
 		.charts{
 			width: 80%;
 			margin: 0 auto;
+		}
+
+		.bar_info_item{
+			padding: 10px 20px;
+			border-radius: 3px;
+			color: #fff;
+			font-size: 14px;
+			margin-bottom: 5px;
+		}
+		.pct_abortions{
+			background-color: #F1894D;
+		}
+		.pct_safeabs{
+			background-color: #1EAC51;
+		}
+		.pct_unsafeabs{
+			background-color: #2077C0;
 		}
 	</style>
 
