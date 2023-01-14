@@ -329,8 +329,8 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 
 
 	const pctColor = d3.scaleOrdinal()
-		.domain(['#F1894D', '#1EAC51', '#2077C0', '#8E349D', '#DA4C78', '#E75C3C'])
-		.range(['#F1894D', '#1EAC51', '#2077C0', '#8E349D', '#DA4C78', '#E75C3C'])
+		.domain(['#F1894D', '#1EAC51', '#2077C0'])
+		.range(['#F1894D', '#1EAC51', '#2077C0'])
 
 	const groupBarChart = d3.select('#groupBar')
 		.append("svg")
@@ -339,11 +339,11 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 	const gxScale = d3.scaleBand()
 		.domain(pctData.map(d => d.region))
 		.range([margins.left, width - margins.right])
-		.padding(0.1);
+		.padding(0);
 
 	const gxzScale = d3.scaleBand()
 		.domain(pctData.map(d => d.column))
-		.range([0, gxScale.bandwidth()])
+		.range([20, gxScale.bandwidth()])
 		.padding(0);
 
 	const gyScale = d3.scaleLinear()
