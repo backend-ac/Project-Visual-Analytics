@@ -343,7 +343,7 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 
 	const gxzScale = d3.scaleBand()
 		.domain(pctData.map(d => d.column))
-		.range([20, 80])
+		.range([50, 150])
 		.padding(0.1);
 
 	const gyScale = d3.scaleLinear()
