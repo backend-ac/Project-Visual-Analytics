@@ -1,5 +1,5 @@
 d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
-	console.log(d);
+	// console.log(d);
 
 	return {
 		geo: d.region.replace(/\s/g, ''),
@@ -8,6 +8,10 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		safe_abortions: +d.safe_abortions,
 		lesssafe_abortions: +d.lesssafe_abortions,
 		leastsafe_abortions: +d.leastsafe_abortions,
+
+		pct_matdeaths_abortions: +d.pct_matdeaths_abortions,
+		pct_matdeaths_safeabs: +d.pct_matdeaths_safeabs,
+		pct_matdeaths_unsafeabs: +d.pct_matdeaths_unsafeabs,
 	}
 }).then(rawData => { // Log the data to the console to check if it is correctly populated
 	// Group the data by region and sum the values of allpreg_abortion
@@ -77,6 +81,8 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 
 	console.log('worldData')
 	console.log(worldData)
+
+	let pct_cols = ['pct_matdeaths_abortions', 'pct_matdeaths_safeabs', 'pct_matdeaths_unsafeabs'];
 
 
 	// Create a pie layout
