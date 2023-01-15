@@ -393,12 +393,18 @@ let countrymesh = {};
 let hale = {};
 let world = {};
 
+let cointriesLoaded = false;
+let countrymeshLoaded = false;
+let haleLoaded = false;
+let worldLoaded = false;
+
 d3.json("./data/countries.json", d => {
 	console.log(d);
 }).then(data => {
-	console.log('data countries');
-	console.log(data);
+	// console.log('data countries');
+	// console.log(data);
 	mapCountries = data;
+	cointriesLoaded = true;
 });
 
 d3.json("./data/countrymesh.json", d => {
@@ -406,6 +412,7 @@ d3.json("./data/countrymesh.json", d => {
 }).then(data => {
 	// console.log(data);
 	countrymesh = data;
+	countrymeshLoaded = true;
 });
 
 d3.json("./data/hale.json", d => {
@@ -413,6 +420,7 @@ d3.json("./data/hale.json", d => {
 }).then(data => {
 	// console.log(data);
 	hale = data;
+	haleLoaded = true;
 });
 
 d3.json("./data/world.json", d => {
@@ -420,22 +428,37 @@ d3.json("./data/world.json", d => {
 }).then(data => {
 	// console.log(data);
 	world = data;
+	worldLoaded = true;
 });
 
 
-setTimeout(function(){
-	console.log('-----------------');
-	console.log('timeout');
-	console.log('-----------------');
+getAllData();
 
-	console.log('mapCountries');
-	console.log(mapCountries);
-	console.log('countrymesh');
-	console.log(countrymesh);
-	console.log('hale');
-	console.log(hale);
-	console.log('world');
-	console.log(world);
+function getAllData(){
+	setTimeout(function(){
+		console.log('-----------------');
+		console.log('timeout');
+		console.log('-----------------');
 
-}, 1000)
+		if( cointriesLoaded && countrymeshLoaded && haleLoaded &&worldLoaded ){
+			console.log('ALL DATA LOADED');
+
+			console.log('mapCountries');
+			console.log(mapCountries);
+
+			console.log('countrymesh');
+			console.log(countrymesh);
+
+			console.log('hale');
+			console.log(hale);
+
+			console.log('world');
+			console.log(world);
+
+		} else{
+			getAllData();
+		}
+
+	}, 1000);
+}
 
