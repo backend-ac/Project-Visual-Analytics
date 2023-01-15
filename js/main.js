@@ -63,14 +63,16 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 					pct_matdeaths_unsafeabs: rawData[item].pct_matdeaths_unsafeabs,
 				};
 			}
+
+			
+			let w_item = {
+				name: rawData[item].country,
+				value: rawData[item].pct_matdeaths_abortions
+			};
+
+			worldValues.push(w_item);
 		}
 
-		let w_item = {
-			name: rawData[item].country,
-			value: rawData[item].pct_matdeaths_abortions
-		};
-
-		worldValues.push(w_item);
 	}
 
 	// console.log('barData keys');
@@ -540,7 +542,7 @@ function getAllData(){
 			chart = Choropleth(countryValues, {
 			  id: d => d.name, // country name, e.g. Zimbabwe
 			  value: d => d.value, // health-adjusted life expectancy
-			  range: d3.interpolateYlGnBu,
+			  range: d3.interpolatePurples,
 			  features: mapCountries,
 			  featureId: d => d.properties.name, // i.e., not ISO 3166-1 numeric
 			  borders: countrymesh,
@@ -555,8 +557,7 @@ function getAllData(){
 			  format, // optional format specifier for the title
 			  scale = d3.scaleSequential, // type of color scale
 			  domain, // [min, max] values; input of color scale
-			  // range = d3.interpolateBlues, // output of color scale
-			  range = d3.interpolatePurples, // output of color scale
+			  range = d3.interpolateBlues, // output of color scale
 			  width = 640, // outer width, in pixels
 			  height, // outer height, in pixels
 			  projection, // a D3 projection; null for pre-projected geometry
