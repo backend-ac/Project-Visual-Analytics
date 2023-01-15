@@ -395,6 +395,9 @@ let countrymesh = {};
 let hale = {};
 let world = {};
 
+let countryValues = {};
+let countryValuesLoaded = false;
+
 let cointriesLoaded = false;
 let countrymeshLoaded = false;
 let haleLoaded = false;
@@ -417,12 +420,20 @@ d3.json("./data/countrymesh.json", d => {
 	countrymeshLoaded = true;
 });
 
-d3.json("./data/hale.json", d => {
+// d3.json("./data/hale.json", d => {
+// 	console.log(d);
+// }).then(data => {
+// 	// console.log(data);
+// 	hale = data;
+// 	haleLoaded = true;
+// });
+
+d3.json("./data/country-values.json", d => {
 	console.log(d);
 }).then(data => {
 	// console.log(data);
-	hale = data;
-	haleLoaded = true;
+	countryValues = data;
+	countryValuesLoaded = true;
 });
 
 d3.json("./data/world.json", d => {
@@ -454,7 +465,7 @@ function getAllData(){
 		console.log('timeout');
 		// console.log('-----------------');
 
-		if( cointriesLoaded && countrymeshLoaded && haleLoaded &&worldLoaded ){
+		if( cointriesLoaded && countrymeshLoaded && countryValuesLoaded && worldLoaded ){
 			console.log('ALL DATA LOADED');
 
 			// console.log('mapCountries');
@@ -463,20 +474,20 @@ function getAllData(){
 			// console.log('countrymesh');
 			// console.log(countrymesh);
 
-			console.log('hale');
-			console.log(hale);
+			console.log('countryValues');
+			console.log(countryValues);
 
-			let newDataJSON = [];
-			for( i in hale ){
-				let item = {
-					name: hale[i].name,
-					value: 0
-				};
+			// let newDataJSON = [];
+			// for( i in hale ){
+			// 	let item = {
+			// 		name: hale[i].name,
+			// 		value: 0
+			// 	};
 
-				newDataJSON.push(item);
-			}
+			// 	newDataJSON.push(item);
+			// }
 
-			exportToJsonFile(newDataJSON);
+			// exportToJsonFile(newDataJSON);
 
 			// console.log('world');
 			// console.log(world);
@@ -513,9 +524,9 @@ function getAllData(){
 			])
 
 
-			chart = Choropleth(hale, {
+			chart = Choropleth(countryValues, {
 			  id: d => d.name, // country name, e.g. Zimbabwe
-			  value: d => d.hale, // health-adjusted life expectancy
+			  value: d => d.value, // health-adjusted life expectancy
 			  range: d3.interpolateYlGnBu,
 			  features: mapCountries,
 			  featureId: d => d.properties.name, // i.e., not ISO 3166-1 numeric
