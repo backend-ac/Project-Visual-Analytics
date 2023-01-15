@@ -560,7 +560,8 @@ function getAllData(){
 			  // Construct a path generator.
 			  const path = d3.geoPath(projection);
 
-			  const svg = d3.create("svg")
+			  const svg = d3.select('#map')
+			  	  .append('svg')
 			      .attr("width", width)
 			      .attr("height", height)
 			      .attr("viewBox", [0, 0, width, height])
