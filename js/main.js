@@ -438,22 +438,65 @@ function getAllData(){
 	setTimeout(function(){
 		console.log('-----------------');
 		console.log('timeout');
-		console.log('-----------------');
+		// console.log('-----------------');
 
 		if( cointriesLoaded && countrymeshLoaded && haleLoaded &&worldLoaded ){
 			console.log('ALL DATA LOADED');
 
-			console.log('mapCountries');
-			console.log(mapCountries);
+			// console.log('mapCountries');
+			// console.log(mapCountries);
 
-			console.log('countrymesh');
-			console.log(countrymesh);
+			// console.log('countrymesh');
+			// console.log(countrymesh);
 
-			console.log('hale');
-			console.log(hale);
+			// console.log('hale');
+			// console.log(hale);
 
-			console.log('world');
-			console.log(world);
+			// console.log('world');
+			// console.log(world);
+
+			rename = new Map([
+				["Antigua and Barbuda", "Antigua and Barb."],
+				["Bolivia (Plurinational State of)", "Bolivia"],
+				["Bosnia and Herzegovina", "Bosnia and Herz."],
+				["Brunei Darussalam", "Brunei"],
+				["Central African Republic", "Central African Rep."],
+				["Cook Islands", "Cook Is."],
+				["Democratic People's Republic of Korea", "North Korea"],
+				["Democratic Republic of the Congo", "Dem. Rep. Congo"],
+				["Dominican Republic", "Dominican Rep."],
+				["Equatorial Guinea", "Eq. Guinea"],
+				["Iran (Islamic Republic of)", "Iran"],
+				["Lao People's Democratic Republic", "Laos"],
+				["Marshall Islands", "Marshall Is."],
+				["Micronesia (Federated States of)", "Micronesia"],
+				["Republic of Korea", "South Korea"],
+				["Republic of Moldova", "Moldova"],
+				["Russian Federation", "Russia"],
+				["Saint Kitts and Nevis", "St. Kitts and Nevis"],
+				["Saint Vincent and the Grenadines", "St. Vin. and Gren."],
+				["Sao Tome and Principe", "São Tomé and Principe"],
+				["Solomon Islands", "Solomon Is."],
+				["South Sudan", "S. Sudan"],
+				["Swaziland", "eSwatini"],
+				["Syrian Arab Republic", "Syria"],
+				["The former Yugoslav Republic of Macedonia", "Macedonia"],
+				["United Republic of Tanzania", "Tanzania"],
+				["Venezuela (Bolivarian Republic of)", "Venezuela"],
+				["Viet Nam", "Vietnam"]
+			])
+
+
+			chart = Choropleth(hale, {
+			  id: d => d.name, // country name, e.g. Zimbabwe
+			  value: d => d.hale, // health-adjusted life expectancy
+			  range: d3.interpolateYlGnBu,
+			  features: mapCountries,
+			  featureId: d => d.properties.name, // i.e., not ISO 3166-1 numeric
+			  borders: countrymesh,
+			  projection: d3.geoEqualEarth(),
+			  width
+			})
 
 		} else{
 			getAllData();
