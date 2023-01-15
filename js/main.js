@@ -2,7 +2,7 @@
 let worldValues = [];
 
 d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
-	console.log(d);
+	// console.log(d);
 
 	return {
 		geo: d.region.replace(/\s/g, ''),
@@ -486,8 +486,8 @@ function getAllData(){
 			// console.log('countrymesh');
 			// console.log(countrymesh);
 
-			console.log('countryValues');
-			console.log(countryValues);
+			// console.log('countryValues');
+			// console.log(countryValues);
 
 			console.log('worldValues');
 			console.log(worldValues);
@@ -539,7 +539,7 @@ function getAllData(){
 			])
 
 
-			chart = Choropleth(countryValues, {
+			chart = Choropleth(worldValues, {
 			  id: d => d.name, // country name, e.g. Zimbabwe
 			  value: d => d.value, // health-adjusted life expectancy
 			  range: d3.interpolatePurples,
