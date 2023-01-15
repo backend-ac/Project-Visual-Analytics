@@ -4,6 +4,8 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 	return {
 		geo: d.region.replace(/\s/g, ''),
 		category: d.region,
+		country: d.country,
+
 		value: +d.allpreg_abortion,
 		safe_abortions: +d.safe_abortions,
 		lesssafe_abortions: +d.lesssafe_abortions,
@@ -434,6 +436,18 @@ d3.json("./data/world.json", d => {
 
 getAllData();
 
+function exportToJsonFile(jsonData) {
+    let dataStr = JSON.stringify(jsonData);
+    let dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+
+    let exportFileDefaultName = 'data.json';
+
+    let linkElement = document.createElement('a');
+    linkElement.setAttribute('href', dataUri);
+    linkElement.setAttribute('download', exportFileDefaultName);
+    linkElement.click();
+}
+
 function getAllData(){
 	setTimeout(function(){
 		console.log('-----------------');
@@ -449,8 +463,10 @@ function getAllData(){
 			// console.log('countrymesh');
 			// console.log(countrymesh);
 
-			// console.log('hale');
-			// console.log(hale);
+			console.log('hale');
+			console.log(hale);
+
+			exportToJsonFile(hale);
 
 			// console.log('world');
 			// console.log(world);
