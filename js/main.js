@@ -466,7 +466,17 @@ function getAllData(){
 			console.log('hale');
 			console.log(hale);
 
-			exportToJsonFile(hale);
+			let newDataJSON = [];
+			for( i in hale ){
+				let item = {
+					name: hale[i].name,
+					value: 0
+				};
+
+				newDataJSON.push(item);
+			}
+
+			exportToJsonFile(newDataJSON);
 
 			// console.log('world');
 			// console.log(world);
