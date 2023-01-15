@@ -396,7 +396,8 @@ let world = {};
 d3.json("./data/countries.json", d => {
 	console.log(d);
 }).then(data => {
-	// console.log(data);
+	console.log('data countries');
+	console.log(data);
 	mapCountries = data;
 });
 
@@ -421,14 +422,6 @@ d3.json("./data/world.json", d => {
 	world = data;
 });
 
-console.log('mapCountries');
-console.log(mapCountries);
-console.log('countrymesh');
-console.log(countrymesh);
-console.log('hale');
-console.log(hale);
-console.log('world');
-console.log(world);
 
 setTimeout(function(){
 	console.log('-----------------');
@@ -444,5 +437,5 @@ setTimeout(function(){
 	console.log('world');
 	console.log(world);
 
-}, 500)
+}, 1000)
 
