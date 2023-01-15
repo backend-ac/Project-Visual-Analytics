@@ -1,3 +1,6 @@
+
+let worldValues = [];
+
 d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 	console.log(d);
 
@@ -27,7 +30,8 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 	const margins = {top: 10, right: 30, bottom: 80, left: 20};
 
 	console.log(rawData);
-	console.log(groupData); // Log the groupData to the console to check if it is correctly calculated
+	worldValues = rawData;
+	// console.log(groupData); // Log the groupData to the console to check if it is correctly calculated
 
 	var barData = {};
 	for( item in rawData ){
@@ -63,15 +67,15 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		}
 	}
 
-	console.log('barData keys');
-	console.log(barData);
+	// console.log('barData keys');
+	// console.log(barData);
 
 	let mainData = barData;
 
 	barData = Object.values(barData);
 
-	console.log('barData');
-	console.log(barData);
+	// console.log('barData');
+	// console.log(barData);
 
 	let w_cols = ['leastsafe_abortions', 'lesssafe_abortions', 'safe_abortions'];
 	let w_cols_labels = ['Leastsafe Abortions', 'Lesssafe Abortions', 'Safe Abortions'];
@@ -91,8 +95,8 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		}
 	}
 
-	console.log('worldData')
-	console.log(worldData)
+	// console.log('worldData')
+	// console.log(worldData)
 
 
 
@@ -164,11 +168,11 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
     		.style("stroke-width", 2);
     	d3.select(this).classed('active', true);
 
-    	console.log(mainData);
-    	console.log(mainData[cur_item]);
+    	// console.log(mainData);
+    	// console.log(mainData[cur_item]);
 
-    	console.log('worldData before')
-    	console.log(worldData)
+    	// console.log('worldData before')
+    	// console.log(worldData)
 
     	for( item in worldData ){
     		if( worldData[item].col == 'leastsafe_abortions' ){
@@ -185,8 +189,8 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
     		}
     	}
 
-    	console.log('worldData after')
-    	console.log(worldData)
+    	// console.log('worldData after')
+    	// console.log(worldData)
 
     	const xScale = d3.scaleBand()
 	    	.domain(worldData.map(d => d.label))
@@ -326,8 +330,8 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 		}
 	}
 
-	console.log('pctData')
-	console.log(pctData)
+	// console.log('pctData')
+	// console.log(pctData)
 
 
 	const pctColor = d3.scaleOrdinal()
@@ -476,6 +480,9 @@ function getAllData(){
 
 			console.log('countryValues');
 			console.log(countryValues);
+
+			console.log('worldValues');
+			console.log(worldValues);
 
 			// let newDataJSON = [];
 			// for( i in hale ){
