@@ -495,7 +495,7 @@ function getAllData(){
 			  featureId: d => d.properties.name, // i.e., not ISO 3166-1 numeric
 			  borders: countrymesh,
 			  projection: d3.geoEqualEarth(),
-			  width
+			  // width
 			})
 
 			function Choropleth(data, {
