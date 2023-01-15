@@ -26,7 +26,7 @@
 		<div>
 			<div class="map_range">
 				<div class="map_range_item map_range_min">0</div>
-				<div class="map_range_bar"></div>
+				<div class="map_range_bar">pct_matdeaths_abortions</div>
 				<div class="map_range_item map_range_max">1</div>
 			</div>
 			<div id="map"></div>
@@ -62,9 +62,24 @@
 			background-color: #2077C0;
 		}
 
+		.map_range{
+			position: relative;
+			display: flex;
+			width: 50%;
+			height: 20px;
+			margin: 0 auto 30px;
+		}
+		.map_range_item{
+			position: absolute;
+			flex-shrink: 0;
+			bottom: 100%;
+		}
 		.map_range_bar{
 			width: 100%;
-			background: rgb(106, 81, 163);
+			height: 100%;
+			color: #fff;
+			text-align: center;
+			background: linear-gradient(-45deg, rgb(106, 81, 163), rgb(226, 225, 239));
 		}
 	</style>
 
