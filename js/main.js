@@ -30,7 +30,6 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 	const margins = {top: 10, right: 30, bottom: 80, left: 20};
 
 	console.log(rawData);
-	worldValues = rawData;
 	// console.log(groupData); // Log the groupData to the console to check if it is correctly calculated
 
 	var barData = {};
@@ -65,6 +64,13 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 				};
 			}
 		}
+
+		let w_item = {
+			name: rawData[item].country,
+			value: rawData[item].pct_matdeaths_abortions
+		};
+
+		worldValues.push(w_item);
 	}
 
 	// console.log('barData keys');
