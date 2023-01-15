@@ -388,9 +388,61 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 
 /*------------ Map ----------*/
 
+let mapCountries = {};
+let countrymesh = {};
+let hale = {};
+let world = {};
+
 d3.json("./data/countries.json", d => {
 	console.log(d);
 }).then(data => {
-	console.log(data);
-})
+	// console.log(data);
+	mapCountries = data;
+});
+
+d3.json("./data/countrymesh.json", d => {
+	console.log(d);
+}).then(data => {
+	// console.log(data);
+	countrymesh = data;
+});
+
+d3.json("./data/hale.json", d => {
+	console.log(d);
+}).then(data => {
+	// console.log(data);
+	hale = data;
+});
+
+d3.json("./data/world.json", d => {
+	console.log(d);
+}).then(data => {
+	// console.log(data);
+	world = data;
+});
+
+console.log('mapCountries');
+console.log(mapCountries);
+console.log('countrymesh');
+console.log(countrymesh);
+console.log('hale');
+console.log(hale);
+console.log('world');
+console.log(world);
+
+setTimeout(function(){
+	console.log('-----------------');
+	console.log('timeout');
+	console.log('-----------------');
+
+	console.log('mapCountries');
+	console.log(mapCountries);
+	console.log('countrymesh');
+	console.log(countrymesh);
+	console.log('hale');
+	console.log(hale);
+	console.log('world');
+	console.log(world);
+
+}, 500)
 
