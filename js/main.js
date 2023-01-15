@@ -388,7 +388,9 @@ d3.csv("./data/AIU-All-Women-Dataset-csv.csv", d => {
 
 /*------------ Map ----------*/
 
-d3.json("./data.countries.json", d => {
+d3.json("./data/countries.json", d => {
 	console.log(d);
-});
+}).then(data => {
+	console.log(data);
+})
 
