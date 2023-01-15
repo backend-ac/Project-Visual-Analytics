@@ -542,7 +542,8 @@ function getAllData(){
 			  format, // optional format specifier for the title
 			  scale = d3.scaleSequential, // type of color scale
 			  domain, // [min, max] values; input of color scale
-			  range = d3.interpolateBlues, // output of color scale
+			  // range = d3.interpolateBlues, // output of color scale
+			  range = d3.interpolatePurples, // output of color scale
 			  width = 640, // outer width, in pixels
 			  height, // outer height, in pixels
 			  projection, // a D3 projection; null for pre-projected geometry
